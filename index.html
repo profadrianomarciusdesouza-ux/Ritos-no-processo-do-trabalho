@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Ritos no Processo do Trabalho — Prof. Adriano Március de Souza</title>
+<link href="https://googleapis.com" rel="stylesheet">
+<style>
+  :root {
+    --azul:    #1a3a6e; --azul2: #2563eb; --azul3: #3b82f6;
+    --ouro:    #c9a84c; --ouro2: #f0c96a;
+    --bg:      #0d1b2a; --bg2: #112240;
+    --card:    rgba(255,255,255,0.05);
+    --txt:     #e8edf5; --txt2: #9db4cc;
+    --verde:   #22c55e; --verm: #ef4444;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg); color: var(--txt);
+    height: 100vh; overflow: hidden; cursor: none;
+  }
+
+  #cursor {
+    width: 14px; height: 14px; border: 2px solid var(--ouro);
+    border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999;
+    transition: transform .15s ease; mix-blend-mode: difference;
+  }
+
+  #progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: linear-gradient(90deg, var(--ouro), var(--azul3));
+    transition: width .4s ease; z-index: 100;
+  }
+
+  .slide {
+    display: none; position: absolute; inset: 0;
+    flex-direction: column; justify-content: center; align-items: center;
+    padding: 40px 60px; animation: slideIn .45s ease-out;
+  }
+  .slide.active { display: flex; }
+
+  @keyframes slideIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+
+  .card {
+    background: var(--card); border: 1px solid rgba(255,255,255,.1);
+    border-radius: 20px; padding: 35px; width: 100%; max-width: 900px;
+    backdrop-filter: blur(12px); box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  }
+
+  .tag {
+    display: inline-block; font-size: 10px; font-family: 'DM Mono', monospace;
+    padding: 4px 12px; border-radius: 20px; text-transform: uppercase;
+    border: 1px solid currentColor; margin-bottom: 10px;
+  }
+
+  .grid-info {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;
+  }
+
+  .info-item h4 {
+    font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ouro);
+    text-transform: uppercase; margin-bottom: 5px; letter-spacing: 1px;
+  }
+
+  .info-item p { font-size: 14px; color: var(--txt2); line-height: 1.5; }
+
+  .btn-genially {
+    background: linear-gradient(135deg, var(--azul2), var(--azul3));
+    color: white; padding: 20px 40px; border-radius: 50px;
+    text-decoration: none; font-weight: 700; margin-top: 30px;
+    transition: all 0.3s; border: none; box-shadow: 0 10px 30px rgba(37,99,235,0.4);
+  }
+  .btn-genially:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(37,99,235,0.6); }
+
+  .controls { position: fixed; bottom: 30px; right: 30px; display: flex; gap: 15px; }
+  .btn-nav {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    color: white; width: 45px; height: 45px; border-radius: 50%; cursor: pointer;
+  }
+  .btn-nav:hover { background: var(--ouro); color: var(--bg); }
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="progress-bar"></div>
+
+<!-- SLIDE 1: CAPA -->
+<div class="slide active">
+  <div style="text-align:center">
+    <div style="font-family:'DM Mono'; color:var(--ouro); letter-spacing:5px; margin-bottom:15px">MASTERCLASS</div>
+    <h1 style="font-family:'Playfair Display'; font-size:65px; margin-bottom:10px">Ritos Processuais</h1>
+    <p style="color:var(--txt2); font-size:18px; letter-spacing:2px">TEORIA E PRÁTICA NO PROCESSO DO TRABALHO</p>
+    <div style="margin-top:40px; font-size:14px; color:var(--ouro)">Prof. Adriano Március de Souza</div>
+  </div>
+</div>
+
+<!-- SLIDE 2: RITO SUMÁRIO -->
+<div class="slide">
+  <div class="card">
+    <span class="tag" style="color:var(--ouro)">Lei nº 5.584/70</span>
+    <h2 style="font-family:'Playfair Display'; font-size:32px; margin-bottom:10px">Procedimento Sumário (Alçada)</h2>
+    <p style="font-size:15px; margin-bottom:20px">Destinado a causas de baixo valor econômico, visando a celeridade máxima.</p>
+    
+    <div class="grid-info">
+      <div class="info-item">
+        <h4>Valor da Causa</h4>
+        <p>Até <strong>2 salários mínimos</strong> na data do ajuizamento.</p>
+      </div>
+      <div class="info-item">
+        <h4>Recursos</h4>
+        <p>Regra da "Irrecorribilidade": Só cabe recurso se houver discussão sobre <strong>matéria constitucional</strong>. Não cabe RO sobre fatos/provas.</p>
+      </div>
+      <div class="info-item">
+        <h4>Testemunhas</h4>
+        <p>Até <strong>2 testemunhas</strong> para cada parte (aplicação subsidiária do rito sumaríssimo).</p>
+      </div>
+      <div class="info-item">
+        <h4>Audiência</h4>
+        <p>Instrução e Julgamento em <strong>audiência única</strong> (concentração de atos).</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: RITO SUMARÍSSIMO -->
+<div class="slide">
+  <div class="card">
+    <span class="tag" style="color:var(--azul3)">Art. 852-A a 852-I da CLT</span>
+    <h2 style="font-family:'Playfair Display'; font-size:32px; margin-bottom:10px">Procedimento Sumaríssimo</h2>
+    <p style="font-size:15px; margin-bottom:20px">O rito mais cobrado em exames, com regras rígidas de admissibilidade.</p>
+    
+    <div class="grid-info">
+      <div class="info-item">
+        <h4>Valor da Causa</h4>
+        <p>Acima de <strong>2 até 40 salários mínimos</strong>.</p>
+      </div>
+      <div class="info-item">
+        <h4>Requisitos do Pedido</h4>
+        <p>O pedido deve ser <strong>certo, determinado e indicado o valor</strong>. Erros aqui levam ao arquivamento imediato.</p>
+      </div>
+      <div class="info-item">
+        <h4>Exclusões</h4>
+        <p>Não se aplica à <strong>Administração Pública Direta</strong>, Autárquica e Fundacional. Admite-se contra Empresas Públicas/Soc. Ec. Mista.</p>
+      </div>
+      <div class="info-item">
+        <h4>Citação e Prazos</h4>
+        <p><strong>Não admite edital</strong>. O julgamento deve ocorrer em até 15 dias. Máximo de 2 testemunhas por parte.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: RITO ORDINÁRIO -->
+<div class="slide">
+  <div class="card">
+    <span class="tag" style="color:var(--verde)">Procedimento Comum</span>
+    <h2 style="font-family:'Playfair Display'; font-size:32px; margin-bottom:10px">Procedimento Ordinário</h2>
+    <p style="font-size:15px; margin-bottom:20px">Rito de cognição plena e exauriente para causas complexas.</p>
+    
+    <div class="grid-info">
+      <div class="info-item">
+        <h4>Valor da Causa</h4>
+        <p>Causas <strong>acima de 40 salários mínimos</strong> ou quando o valor é indeterminado.</p>
+      </div>
+      <div class="info-item">
+        <h4>Administração Pública</h4>
+        <p>Independentemente do valor, se a <strong>União, Estados ou Municípios</strong> forem parte, o rito é obrigatoriamente o Ordinário.</p>
+      </div>
+      <div class="info-item">
+        <h4>Provas e Testemunhas</h4>
+        <p>Ampla produção probatória. Até <strong>3 testemunhas</strong> por parte (até 6 em Inquérito para Falta Grave).</p>
+      </div>
+      <div class="info-item">
+        <h4>Citação</h4>
+        <p>Permite <strong>citação por edital</strong> caso o reclamado esteja em local incerto ou não sabido.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: DESAFIO -->
+<div class="slide">
+  <div style="text-align:center">
+    <div class="badge" style="border:1px solid var(--ouro); padding:5px 15px; border-radius:20px; color:var(--ouro); font-size:12px; margin-bottom:20px">APLICAÇÃO PRÁTICA</div>
+    <h2 style="font-family:'Playfair Display'; font-size:45px">Laboratório de Ritos</h2>
+    <p style="color:var(--txt2); max-width:600px; margin:20px auto">Teste seus conhecimentos agora. Lembre-se: o erro faz parte do processo. Se falhar, o Miro te ajudará na revisão!</p>
+    
+    <a href="https://view.genially.com/69cb08da4cb62eef35f6d083" target="_blank" class="btn-genially">
+      INICIAR DESAFIO GENIALLY
+    </a>
+  </div>
+</div>
+
+<div class="controls">
+  <button class="btn-nav" onclick="changeSlide(-1)">←</button>
+  <button class="btn-nav" onclick="changeSlide(1)">→</button>
+</div>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const progress = document.getElementById('progress-bar');
+
+  function changeSlide(dir) {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + dir + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    progress.style.width = ((currentSlide + 1) / slides.length * 100) + '%';
+  }
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'ArrowRight') changeSlide(1);
+    if(e.key === 'ArrowLeft') changeSlide(-1);
+  });
+</script>
+
+</body>
+</html>
