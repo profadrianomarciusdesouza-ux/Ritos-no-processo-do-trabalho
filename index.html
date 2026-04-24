@@ -187,7 +187,7 @@
     <h2 style="font-family:'Playfair Display'; font-size:45px">Laboratório de Ritos</h2>
     <p style="color:var(--txt2); max-width:600px; margin:20px auto">Teste seus conhecimentos agora. Lembre-se: o erro faz parte do processo. Se falhar, o Miro te ajudará na revisão!</p>
     
-    <a href="https://view.genially.com/69cb08da4cb62eef35f6d083" target="_blank" class="btn-genially">
+    <a href="https://genially.com" target="_blank" class="btn-genially">
       INICIAR DESAFIO GENIALLY
     </a>
   </div>
@@ -199,28 +199,52 @@
 </div>
 
 <script>
+  // ── CURSOR SEGUE O MOUSE ──
   const cursor = document.getElementById('cursor');
   document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
+    // Adicionado requestAnimationFrame para suavizar o movimento do cursor
+    window.requestAnimationFrame(() => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
   });
 
+  // ── LÓGICA DE NAVEGAÇÃO (CONTROLE REMOTO) ──
   let currentSlide = 0;
   const slides = document.querySelectorAll('.slide');
   const progress = document.getElementById('progress-bar');
 
-  function changeSlide(dir) {
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + dir + slides.length) % slides.length;
-    slides[currentSlide].classList.add('active');
-    progress.style.width = ((currentSlide + 1) / slides.length * 100) + '%';
+  function updateSlideDisplay() {
+    slides.forEach((s, i) => {
+      s.classList.toggle('active', i === currentSlide);
+    });
+    // Atualiza a barra de progresso no topo
+    const progressPercent = ((currentSlide + 1) / slides.length) * 100;
+    progress.style.width = progressPercent + '%';
   }
 
+  function changeSlide(dir) {
+    currentSlide = (currentSlide + dir + slides.length) % slides.length;
+    updateSlideDisplay();
+  }
+
+  // ── EVENTOS DE TECLADO (O CONTROLE REMOTO REAL) ──
   document.addEventListener('keydown', e => {
-    if(e.key === 'ArrowRight') changeSlide(1);
-    if(e.key === 'ArrowLeft') changeSlide(-1);
+    // Suporte para Setas, Barra de Espaço e PageUp/Down (comuns em passadores de slides)
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+      e.preventDefault(); // Evita scroll da página ao usar espaço
+      changeSlide(1);
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      changeSlide(-1);
+    }
   });
+
+  // Inicializa o estado do primeiro slide
+  updateSlideDisplay();
 </script>
+
 
 </body>
 </html>
